@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3>Registro de nuevo usuario</h3>
+            <hr>
+
+            <form action="/registro" method="post">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Registrarse</button><br>
+                <small class="text-muted">¿Ya estás registrado? <a href="/acceso">Accede</a></small><br>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{{#if errorMsg}}
+<div class="error-message">{{ errorMsg }}</div>
+{{/if}}
