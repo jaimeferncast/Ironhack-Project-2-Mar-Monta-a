@@ -23,10 +23,10 @@ function initMap() {
                 'lng': stormGlassParamas.lng,
                 'params': stormGlassParamas.params
             },
-            headers: {'Authorization': 'ff7dd202-6d21-11eb-b399-0242ac130002-ff7dd298-6d21-11eb-b399-0242ac130002'}
+            headers: {'Authorization': 'APIKEY'}
         })
             .then(response => {
-                console.log(response)
+                console.log(response.json())
 
             })
         
