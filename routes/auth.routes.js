@@ -10,8 +10,8 @@ const bcryptSalt = 10
 router.get("/acceso", (req, res) => res.render("auth/login", { errorMsg: req.flash("error") }))
 
 router.post("/acceso", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
+    successRedirect: "/mi-perfil/favoritos",
+    failureRedirect: "/acceso",
     failureFlash: true,
     passReqToCallback: true
 }))
@@ -20,34 +20,44 @@ router.get("/registro", (req, res) => res.render("auth/signup"))
 
 router.post("/registro", (req, res, next) => {
 
-    const { username, name, password, profileImg, description, facebookId } = req.body
+    const { username, name, email, password } = req.body
 
-    if (username === "" || password === "" || name === "") {
-        res.render("auth/signup", { errorMsg: "Fill the required fields" })
+    if (username === "" || password === "" || email === "" || name === "") {
+        res.render("auth/signup", { errorMsg: "Rellena todos los campos" })
         return
     }
 
     User
-        .findOne({ username })
+        .findOne({ email })
         .then(user => {
 
             if (user) {
-                res.render("auth/signup", { errorMsg: "Username already exists" })
+                res.render("auth/signup", { errorMsg: "Email ya registrado" })
                 return
             }
 
-            const salt = bcrypt.genSaltSync(bcryptSalt)
-            const hashPass = bcrypt.hashSync(password, salt)
-
             User
-                .create({ username, name, password: hashPass, profileImg, description, facebookId })
-                .then(() => res.redirect("/"))
-                .catch(() => res.render("auth/signup", { errorMsg: "Server error" }))
+                .findOne({ username })
+                .then(user => {
+
+                    if (user) {
+                        res.render("auth/signup", { errorMsg: "Usuario ya registrado" })
+                        return
+                    }
+
+                    const salt = bcrypt.genSaltSync(bcryptSalt)
+                    const hashPass = bcrypt.hashSync(password, salt)
+
+                    User
+                        .create({ username, name, email, password: hashPass })
+                        .then(() => res.redirect("/"))
+                        .catch(() => res.render("auth/signup", { errorMsg: "Server error" }))
+                })
+                .catch(error => next(new Error(error)))
         })
-        .catch(error => next(new Error(error)))
 })
 
-router.get("/logout", (req, res) => {
+router.get("/cerrar-sesion", (req, res) => {
     req.logout()
     res.redirect("/")
 })

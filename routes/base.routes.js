@@ -1,8 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-// Endpoints
-router.get('/', (req, res) => res.render('index'))
+router.get('/', (req, res) => {
 
+    if (req.user) {
+        let avatar = req.user.avatar
+        return res.render('index', { avatar })
+    } else { res.render('index') }
+})
 
 module.exports = router

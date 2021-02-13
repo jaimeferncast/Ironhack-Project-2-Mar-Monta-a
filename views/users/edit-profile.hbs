@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+            <h1 style="font-weight: 100">Editar mi prefil</h1>
+            <hr>
+            <form action="/mi-perfil/editar" method="POST">
+                {{#with user}}
+                <div class="form-group">
+                    <label for="username-input">Nombre de usuario</label>
+                    <input name="username" type="text" class="form-control" id="username-input" value="{{username}}">
+                </div>
+                <div class="form-group">
+                    <label for="name-input">Nombre</label>
+                    <input name="name" type="text" class="form-control" id="name-input" value="{{name}}">
+                </div>
+                <div class="form-group">
+                    <label for="email-input">Email</label>
+                    <input name="email" type="text" class="form-control" id="email-input" value="{{email}}">
+                </div>
+                <div class="form-group">
+                    <label for="avatar-input">Foto de perfil</label>
+                    <input name="avatar" type="text" class="form-control" id="avatar-input" value="{{avatar}}">
+                </div>
+                {{/with}}
+                <div class="row justify-content-between mx-0 mt-5">
+                    <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                    <a href="/mi-perfil/favoritos" class="btn btn-dark">Volver</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

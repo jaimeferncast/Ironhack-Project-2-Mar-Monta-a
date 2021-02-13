@@ -7,21 +7,23 @@ const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 const salt = bcrypt.genSaltSync(bcryptSalt)
 
-mongoose.connect(`mongodb://localhost/${process.env.DB}`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_REMOTE, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const users = [{
     username: 'superMarMont',
-    email: 'supermarmont@marmont.com',
+    email: 'supermarmont@gmail.com',
     name: 'Mar y Montaña Admin',
     password: bcrypt.hashSync('marmont', salt),
-    role: 'ADMIN'
+    role: 'ADMIN',
+    favourites: []
 },
 {
     username: 'marMont',
     email: 'marmont@marmont.com',
     name: 'Mar y Montaña User',
     password: bcrypt.hashSync('marmont', salt),
-    role: 'USER'
+    role: 'USER',
+    favourites: []
 }
 ]
 

@@ -7,10 +7,16 @@ const userSchema = new Schema(
         email: { type: String, unique: true },
         name: String,
         password: String,
+        avatar: String,
         role: {
             type: String,
             enum: ['USER', 'ADMIN'],
             default: 'USER'
+        },
+        favourites: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Place',
+            default: []
         }
     },
     {

@@ -7,8 +7,11 @@ Listado de Endopints:
 |3|Post|'/acceso'|Login de un usuario.|
 |4|Get|'/registro'|Formulario de registro.|
 |5|Post|'/registro'|Guarda en la DB un usuario.|
-|6|Get|'/mis-favoritos'|Muestra la lista de mis lugares favoritos, y la información del tiempo del luagr seleccionado.|
-|7|Post|'/mis-favoritos/:id'|Elimina de tus favoritos el lugar con el Id asignado.|
-|8|Get|'/lugar/:id'|Página de los detalles del lugar con el Id asignado, incluido el tiempo, fotos, comentarios, etc.|
-|9|Post|'/lugar/:id'|Edición de los detalles del lugar con el Id asignado (agregar fotos, comentarios, etc.)|
-|10|Get|'/lugares'|Lista de lugares que los usuarios tienen de favorito|
+|6|Get|'/mi-perfil/favoritos'|Muestra la lista de mis lugares favoritos, y la información del tiempo del luagr seleccionado.|
+|7|Post|'/mi-perfil/favoritos'|Elimina de tus favoritos el lugar con el Id asignado.|
+|8|Get|'/mi-perfil/editar'|Página del formulario de edición de datos de usuario.|
+|9|Post|'/mi-perfil/editar'|Guarda los cambios del perfil en la DB.|
+|10|Get|'/lugares/:id'|Página de los detalles del lugar con el Id asignado, incluido el tiempo, fotos, comentarios, etc.|
+|11|Post|'/lugares/:id'|Edición de los detalles del lugar con el Id asignado (agregar fotos, comentarios, etc.)|
+|12|Get|'/lugares/favoritos'|Lista de lugares que los usuarios tienen de favorito.|
+|13|Get|'/cerrar-sesion'|Cierra la sesión y te lleva la Home.|
