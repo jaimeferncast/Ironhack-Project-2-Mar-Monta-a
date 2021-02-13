@@ -2,9 +2,12 @@ const express = require('express')
 const router = express.Router()
 const passport = require("passport")
 
+const {checkLoggedIn} = require('./../middleware')
+
+
 const User = require("../models/user.model")
 
-router.get('/favoritos', (req, res) => res.render('users/favourites', req.user))
+router.get('/favoritos', checkLoggedIn, (req, res) => res.render('users/favourites', req.user))
 
 router.get('/editar', (req, res) => res.render('users/edit-profile', req))
 

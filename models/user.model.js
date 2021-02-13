@@ -8,10 +8,9 @@ const userSchema = new Schema(
         name: String,
         password: String,
         avatar: String,
-        role: {
-            type: String,
-            enum: ['USER', 'ADMIN'],
-            default: 'USER'
+        isAdmin: {
+            type: Boolean,         
+            default: false
         },
         favourites: {
             type: [Schema.Types.ObjectId],
