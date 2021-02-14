@@ -5,7 +5,7 @@ function initMap() {
 
     map = new google.maps.Map(
         document.querySelector('#map'),
-        { zoom: 2, center: { lat: 40.392499, lng: -3.698214 } }
+        { zoom: 7, center: { lat: 40.392499, lng: -3.698214 } }
     )
 
     map.addListener('click', (mapMouseEvent) => {

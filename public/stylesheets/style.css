@@ -38,8 +38,7 @@ td {
   font-size: 0.8em;
   font-weight: 100;
   height: 66px;
-  border-color: white;
-  background-color: #f3f3f3; }
+  border-color: white; }
 
 #weather-body td {
   padding-inline: 0; }

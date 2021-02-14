@@ -1,4 +1,5 @@
 let dataTable
+let grey = '225'
 
 function displayWeather(data) {
 
@@ -11,7 +12,7 @@ function displayWeather(data) {
         headers: { 'Authorization': 'ff7dd202-6d21-11eb-b399-0242ac130002-ff7dd298-6d21-11eb-b399-0242ac130002' }
     })
         .then(response => {
-            console.log(response.data.hours)
+            console.log(response.data.hours)       // Borrar sólo cuando la visualización de datos esté terminada
             let resArray = response.data.hours
 
             populateTableWithDates(resArray)
@@ -27,6 +28,8 @@ function displayWeather(data) {
 function populateTableWithDates(array) {
     array.forEach((elm, i) => {
         if (!(i % 3)) {
+            if (!(i % 24)) { grey === '243' ? grey = '225' : grey = '243' }     // cambia el tono de gris la pasar al día siguiente
+
             const time = new Date(elm.time.slice(0, 19))
             let day = time.getDay()
             switch (day) {
@@ -41,7 +44,7 @@ function populateTableWithDates(array) {
             const date = time.getDate()
             const hours = time.getHours() + 'h'
 
-            dataTable += `<th>${day}<br>${date}<br>${hours}</th>`
+            dataTable += `<th style="background-color: rgb(${grey}, ${grey}, ${grey});">${day}<br>${date}<br>${hours}</th>`
         }
     })
 }
@@ -51,9 +54,9 @@ function populateTableWithTemp(array) {
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             let backgroundColor
-            if (elm.airTemperature.sg < -20) { backgroundColor = 'hsl(190,100%,60%)' }
-            else if (elm.airTemperature.sg > 50) { backgroundColor = 'hsl(360,100%,60%)' }
-            else { backgroundColor = Math.round(190 + ((elm.airTemperature.sg + 20) / 70 * 170)) }  // Queremos un color entre hsl(190,100%,60%) --20ºC- y hsl(360,100%,60%) -+50ºC-
+            if (elm.airTemperature.sg < -20) { backgroundColor = '360' }
+            else if (elm.airTemperature.sg > 50) { backgroundColor = '0' }
+            else { backgroundColor = Math.round(360 - ((elm.airTemperature.sg + 20) / 70 * 360)) }  // Queremos un color entre hsl(0,100%,60%) --20ºC- y hsl(360,100%,60%) -+50ºC-
             const Temp = Math.round(elm.airTemperature.sg)
             dataTable += `<td style="background-color: hsl(${backgroundColor},100%,60%);">${Temp}</td>`
         }
@@ -65,7 +68,7 @@ function populateTableWithClouds(array) {
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             const backgroundColor = Math.round(255 - (elm.cloudCover.sg / 100 * 130))     // Queremos un gris entre rgb(90,90,90) -100% de nubes- y rgb (255, 255, 255) -0% de nubes-
-            if (elm.cloudCover) { cloudCover = Math.round(elm.cloudCover.sg) }     // cloudCover en blanco si es igual a 0
+            if (elm.cloudCover.sg > 1) { cloudCover = Math.round(elm.cloudCover.sg) }     // cloudCover en blanco si es igual a 0
             else { cloudCover = '' }
             dataTable += `<td style="background-color: rgb(${backgroundColor}, ${backgroundColor}, ${backgroundColor});">${cloudCover}</td>`
         }
