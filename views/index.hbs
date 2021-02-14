@@ -1,20 +1,21 @@
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            <h2 class="text-center">busqueda</h2>
-            <hr>
+
+        <div class="col-12">
+            <div class="row flex-nowrap mb-5" id="info-place">
+            </div>
+        </div>
+
+        <div class="col-12">
             <figure id="map"></figure>
         </div>
-        <div class="col-6">
-            <h2 class="text-center">info del tiempo</h2>
-            <hr>
-            
-        </div>
+
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/javascripts/map-styles.js"></script>
 <script src="/javascripts/map-configs.js"></script>
+<script src="/javascripts/weather-config.js"></script>
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=APIKEY=initMap"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw1Fte7yNLGH79YfnTEsCpnWKAI_SM-vg&callback=initMap"></script>
