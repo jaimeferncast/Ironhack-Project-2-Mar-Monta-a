@@ -10,7 +10,6 @@ const placeSchema = new Schema(
             lng: String
         },
         images: [String],
-        comments: [String]
     },
     {
         timestamps: true

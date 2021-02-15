@@ -7,7 +7,10 @@ const userSchema = new Schema(
         email: { type: String, unique: true },
         name: String,
         password: String,
-        avatar: String,
+        avatar: {
+            type: String,
+            default: 'https://media-exp1.licdn.com/dms/image/C4D03AQFFOE2nvmuHmg/profile-displayphoto-shrink_[…]40000&v=beta&t=ecXm2Pr-iU7Q7y1FyaxMci0Gi7xUydAlgdk8HW9ky6o',
+        },
         role: {
             type: String,
             enum: ['USER', 'ADMIN'],
