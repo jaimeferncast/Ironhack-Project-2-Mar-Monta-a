@@ -7,6 +7,12 @@
         </div>
 
         <div class="col-12">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Busca</button>
+                </div>
+            </div>
             <figure id="map"></figure>
         </div>
 
@@ -17,5 +23,4 @@
 <script src="/javascripts/map-styles.js"></script>
 <script src="/javascripts/map-configs.js"></script>
 <script src="/javascripts/weather-config.js"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw1Fte7yNLGH79YfnTEsCpnWKAI_SM-vg&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{googleAPI}}&callback=initMap"></script>

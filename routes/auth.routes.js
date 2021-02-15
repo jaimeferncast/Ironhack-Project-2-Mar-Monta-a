@@ -10,7 +10,7 @@ const bcryptSalt = 10
 router.get("/acceso", (req, res) => res.render("auth/login", { errorMsg: req.flash("error") }))
 
 router.post("/acceso", passport.authenticate("local", {
-    successRedirect: "/mi-perfil/favoritos",
+    successRedirect: "/area-personal/mis-lugares",
     failureRedirect: "/acceso",
     failureFlash: true,
     passReqToCallback: true
