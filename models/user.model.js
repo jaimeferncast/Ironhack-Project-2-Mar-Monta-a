@@ -8,15 +8,15 @@ const userSchema = new Schema(
         name: String,
         password: String,
         avatar: String,
-        isAdmin: {
-            type: Boolean,         
-            default: false
+        role: {
+            type: String,
+            enum: ['USER', 'ADMIN'],
+            default: 'USER'
         },
-        favourites: {
-            type: [Schema.Types.ObjectId],
-            ref: 'Place',
-            default: []
-        }
+        favourites: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Place'
+        }]
     },
     {
         timestamps: true

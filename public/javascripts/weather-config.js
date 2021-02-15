@@ -28,7 +28,7 @@ function displayWeather(data) {
 function populateTableWithDates(array) {
     array.forEach((elm, i) => {
         if (!(i % 3)) {
-            if (!(i % 24)) { grey === '243' ? grey = '225' : grey = '243' }     // cambia el tono de gris la pasar al día siguiente
+            if (!(i % 24)) { grey === '243' ? grey = '225' : grey = '243' }     // cambia el tono de gris al pasar al día siguiente
 
             const time = new Date(elm.time.slice(0, 19))
             let day = time.getDay()
