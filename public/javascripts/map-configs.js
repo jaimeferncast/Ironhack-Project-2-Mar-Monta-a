@@ -24,23 +24,4 @@ function initMap() {
 
         displayWeather(stormGlass)
     })
-    // getDirections()
 }
-
-
-// function getDirections() {
-
-//     axios
-//         .get('/api/coffee-list')
-//         .then(response => pinPlace(response.data))
-//         .catch(err => console.log(err))
-// }
-
-
-// function pinPlace(place) {
-
-//     place.forEach(elm => {
-//         const position = { lat: elm.location.coordinates[0], lng: elm.location.coordinates[1] }
-//         new google.maps.Marker({ position, title: elm.title, map })
-//     })
-// }

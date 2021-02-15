@@ -1,5 +1,4 @@
 let dataTable
-let grey = '225'
 
 function displayWeather(data) {
 
@@ -8,24 +7,20 @@ function displayWeather(data) {
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
-    axios.get(`https://api.stormglass.io/v2/weather/point?lat=${data.lat}&lng=${data.lng}&params=${data.params}`, {
-        headers: { 'Authorization': 'ff7dd202-6d21-11eb-b399-0242ac130002-ff7dd298-6d21-11eb-b399-0242ac130002' }
+    axios.post('http://localhost:3000/api/latlng', data).then(response => {
+        console.log(response)
+
+        populateTableWithDates(response.data.resArray)
+        populateTableWithTemp(response.data.resArray)
+        populateTableWithClouds(response.data.resArray)
+        populateTableWithWaves(response.data.resArray)
+        document.querySelector('#info-place').innerHTML = dataTable
     })
-        .then(response => {
-            console.log(response.data.hours)       // Borrar sólo cuando la visualización de datos esté terminada
-            let resArray = response.data.hours
-
-            populateTableWithDates(resArray)
-            populateTableWithTemp(resArray)
-            populateTableWithClouds(resArray)
-            populateTableWithWaves(resArray)
-
-            document.querySelector('#info-place').innerHTML = dataTable
-        })
         .catch(err => console.log(err))
 }
 
 function populateTableWithDates(array) {
+    let grey = '225'
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             if (!(i % 24)) { grey === '243' ? grey = '225' : grey = '243' }     // cambia el tono de gris al pasar al día siguiente
