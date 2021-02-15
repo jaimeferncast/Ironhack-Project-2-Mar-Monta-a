@@ -8,7 +8,6 @@ function displayWeather(data) {
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
     axios.post('http://localhost:3000/api/latlng', data).then(response => {
-        console.log(response)
 
         populateTableWithDates(response.data.resArray)
         populateTableWithTemp(response.data.resArray)
@@ -76,7 +75,7 @@ function populateTableWithWaves(array) {
         if (!(i % 3)) {
             let waveHeight
             if (elm.waveHeight) { waveHeight = elm.waveHeight.sg.toFixed(1) }     // waveHeight es especial al solo existir datos a 7 días vista y sólo en puntos costeros
-            else { waveHeight = '' }
+            else { waveHeight = 'n/a' }
 
             dataTable += `<td>${waveHeight}</td>`
         }

@@ -18,7 +18,7 @@ function initMap() {
         const lat = split[0]
         const lng = split[1].slice(6)
 
-        const params = 'airTemperature,cloudCover,waveHeight'
+        const params = 'airTemperature,cloudCover,precipitation,snowDepth,waterTemperature,waveDirection,waveHeight,wavePeriod,windDirection,windSpeed,gust'
 
         stormGlass = { lat, lng, params }
 
