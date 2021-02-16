@@ -41,6 +41,7 @@ td {
   border-color: white; }
 
 #weather-body td {
-  padding-inline: 0; }
+  padding-inline: 0;
+  height: 28px; }
 
 /*# sourceMappingURL=style.css.map */
