@@ -4,13 +4,12 @@ const Schema = mongoose.Schema
 const placeSchema = new Schema(
     {
         name: String,
-        description: String,
         coordinates: {
             lat: String,
             lng: String
         },
         images: [String],
-        hours: Array
+        weather: Array
     },
     {
         timestamps: true

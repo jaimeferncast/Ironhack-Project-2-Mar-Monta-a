@@ -1,4 +1,4 @@
-let dataTable
+let dataTable // refactorizar como clase
 
 function displayWeather(data) {
 
@@ -7,35 +7,25 @@ function displayWeather(data) {
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
-    axios.get('/api/places').then(response => {
-        // axios.post('/api/places', data).then(response => {
+    axios.post('/api', data).then(response => {
 
-        // populateTableWithDates(response.data.resArray)
-        // populateTableWithTemp(response.data.resArray)
-        // populateTableWithClouds(response.data.resArray)
-        // populateTableWithRain(response.data.resArray)
-        // populateTableWithSnow(response.data.resArray)
-        // populateTableWithWaterTemp(response.data.resArray)
-        // populateTableWithWaveDirection(response.data.resArray)
-        // populateTableWithWaves(response.data.resArray)
-        // populateTableWithWavePeriod(response.data.resArray)
-        // populateTableWithWindDirection(response.data.resArray)
-
-        populateTableWithDates(response.data.response[0].hours)
-        populateTableWithTemp(response.data.response[0].hours)
-        populateTableWithClouds(response.data.response[0].hours)
-        populateTableWithRain(response.data.response[0].hours)
-        populateTableWithSnow(response.data.response[0].hours)
-        populateTableWithWaterTemp(response.data.response[0].hours)
-        populateTableWithWaveDirection(response.data.response[0].hours)
-        populateTableWithWaves(response.data.response[0].hours)
-        populateTableWithWavePeriod(response.data.response[0].hours)
-        populateTableWithWindDirection(response.data.response[0].hours)
+        populateTableWithDates(response.data.weather)
+        populateTableWithTemp(response.data.weather)
+        populateTableWithClouds(response.data.weather)
+        populateTableWithRain(response.data.weather)
+        populateTableWithSnow(response.data.weather)
+        populateTableWithWaterTemp(response.data.weather)
+        populateTableWithWaveDirection(response.data.weather)
+        populateTableWithWaves(response.data.weather)
+        populateTableWithWavePeriod(response.data.weather)
+        populateTableWithWindDirection(response.data.weather)
 
         dataTable += `</tr></tbody></table></div></div>
-        <div class="row justify-content-end mb-5 mr-2"><a href=""><button type="button" class="btn btn-success">Agregar a mis lugares</button></a></div>`
+        <div class="row justify-content-end mb-5 mr-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button></div>`
 
         document.querySelector('#info-place').innerHTML = dataTable
+
+        addFavourite(response.data.weather, data.lat, data.lng)
     })
         .catch(err => console.log(err))
 }
@@ -171,5 +161,24 @@ function populateTableWithWindDirection(array) {
                 dataTable += `<td><img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Down_Arrow_Icon.png" alt="arrow" style="width: 22px; height: 17px; transform: rotate( ${windDirection}deg ); image-rendering: -webkit-optimize-contrast; filter: invert(1) saturate(100) hue-rotate(400deg);"></td>`
             }   // para todos los "wave" parametros solo existen datos a 7 días vista y sólo en puntos costeros
         }
+    })
+}
+
+function addFavourite(weather, lat, lng) {
+
+    document.getElementById('add-place-form').addEventListener('submit', function (event) {
+
+        event.preventDefault()
+
+        const name = document.querySelector('#add-place-form .form-group input[name="name"]').value
+
+        const place = {
+            name,
+            weather,
+            coordinates: { lat, lng }
+        }
+
+        axios.put(`/api/add-favourite`, { place })
+            .catch(err => console.log(err))
     })
 }

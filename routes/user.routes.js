@@ -4,7 +4,6 @@ const passport = require("passport")
 
 const { checkLoggedIn } = require('./../middleware')
 
-
 const User = require("../models/user.model")
 
 router.get('/mis-lugares', checkLoggedIn, (req, res) => res.render('users/my-places', req.user))
