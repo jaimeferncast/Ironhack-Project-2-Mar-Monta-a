@@ -29,15 +29,16 @@
         </div>
 
         <div class="col-12">
-            <div class="input-group mb-3">
-                <form action="/index" method="POST"></form>
-                <input name="direction" type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Busca</button>
-
-                </div>
+            <form action="/index" method="POST">
+                <div class="input-group mb-3">
+                    <input name="direction" type="text" class="form-control"
+                        placeholder="Escribe el nombre de un lugar">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                    </div>
+                    <figure id="map"></figure>
+                    
             </form>
-            <figure id="map"></figure>
         </div>
 
     </div>
