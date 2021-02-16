@@ -13,7 +13,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="PUT" action="" id="add-place-form">
+                        {{!-- necisto method y action? --}}
+                        <form id="add-place-form">
                             <div class="form-group">
                                 <input name="name" type="text" class="form-control">
                             </div>
@@ -29,15 +30,19 @@
         </div>
 
         <div class="col-12">
-            <div class="input-group mb-3">
-                <form action="/index" method="POST"></form>
-                <input name="direction" type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Busca</button>
+            <form id="find-location">
+                <div class="input-group mb-3">
 
+                    {{!-- formulario de búsqueda de lugar --}}
+                    <input name="location" type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary">Buscar</button>
+                    </div>
+
+                    {{!-- mapa --}}
+                    <figure id="map"></figure>
                 </div>
             </form>
-            <figure id="map"></figure>
         </div>
 
     </div>

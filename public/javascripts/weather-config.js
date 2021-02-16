@@ -2,8 +2,14 @@ let dataTable // refactorizar como clase
 
 function displayWeather(data) {
 
-    dataTable =
-    /* Tabla con la leyenda */ `<h6 class="text-center">Datos climatológicos en las coordenadas lat: ${data.lat}, lng: ${data.lng} (10 días)</h6><div class="row flex-nowrap mb-3"><div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th class="text-center pb-3"><small>Powered by:</small><br><img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Blue-circled-5.svg" alt="stormglass-logo" style="width: 88%; filter: opacity(0.8);"></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Precipit. (l/m²)</th></tr><tr><th>Espesor nieve (m)</th></tr><tr><th>Temp. agua (ºC)</th></tr><tr><th>Dirección olas</th></tr><tr><th>Ola (m)</th></tr><tr><th>Período olas (s)</th></tr><tr><th>Dirección viento</th></tr></tbody></table></div>
+    if (data.name) {
+        dataTable = `<h6 class="text-center">Datos climatológicos de ${data.name}`
+    } else {
+        dataTable = `<h6 class="text-center">Datos climatológicos en las coordenadas lat: ${data.lat}, lng: ${data.lng} (10 días)</h6>`
+    }
+
+    dataTable +=
+    /* Tabla con la leyenda */ `<div class="row flex-nowrap mb-3"><div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th class="text-center pb-3"><small>Powered by:</small><br><img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Blue-circled-5.svg" alt="stormglass-logo" style="width: 88%; filter: opacity(0.8);"></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Precipit. (l/m²)</th></tr><tr><th>Espesor nieve (m)</th></tr><tr><th>Temp. agua (ºC)</th></tr><tr><th>Dirección olas</th></tr><tr><th>Ola (m)</th></tr><tr><th>Período olas (s)</th></tr><tr><th>Dirección viento</th></tr></tbody></table></div>
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
@@ -178,7 +184,7 @@ function addFavourite(weather, lat, lng) {
             coordinates: { lat, lng }
         }
 
-        axios.put(`/api/add-favourite`, { place })
+        axios.put(`/api`, place)
             .catch(err => console.log(err))
     })
 }
