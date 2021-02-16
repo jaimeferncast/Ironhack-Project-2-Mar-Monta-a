@@ -3,22 +3,38 @@ let dataTable
 function displayWeather(data) {
 
     dataTable =
-    /* Tabla con la leyenda */ `<h6>Información de ${data.lat}, ${data.lng}</h6><div class="row flex-nowrap mb-5"><div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Precipit. (l/m²)</th></tr><tr><th>Espesor nieve (m)</th></tr><tr><th>Temp. agua (ºC)</th></tr><tr><th>Dirección olas</th></tr><tr><th>Ola (m)</th></tr><tr><th>Período olas (s)</th></tr><tr><th>Dirección viento</th></tr></tbody></table></div>
+    /* Tabla con la leyenda */ `<h6 class="text-center">Datos climatológicos en las coordenadas lat: ${data.lat}, lng: ${data.lng} (10 días)</h6><div class="row flex-nowrap mb-3"><div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th class="text-center pb-3"><small>Powered by:</small><br><img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Blue-circled-5.svg" alt="stormglass-logo" style="width: 88%; filter: opacity(0.8);"></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Precipit. (l/m²)</th></tr><tr><th>Espesor nieve (m)</th></tr><tr><th>Temp. agua (ºC)</th></tr><tr><th>Dirección olas</th></tr><tr><th>Ola (m)</th></tr><tr><th>Período olas (s)</th></tr><tr><th>Dirección viento</th></tr></tbody></table></div>
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
-    axios.post('http://localhost:3000/api/latlng', data).then(response => {
+    axios.get('http://localhost:3000/api/places').then(response => {
+        // axios.post('http://localhost:3000/api/places', data).then(response => {
 
-        populateTableWithDates(response.data.resArray)
-        populateTableWithTemp(response.data.resArray)
-        populateTableWithClouds(response.data.resArray)
-        populateTableWithRain(response.data.resArray)
-        populateTableWithSnow(response.data.resArray)
-        populateTableWithWaterTemp(response.data.resArray)
-        populateTableWithWaveDirection(response.data.resArray)
-        populateTableWithWaves(response.data.resArray)
-        populateTableWithWavePeriod(response.data.resArray)
-        populateTableWithWindDirection(response.data.resArray)
+        // populateTableWithDates(response.data.resArray)
+        // populateTableWithTemp(response.data.resArray)
+        // populateTableWithClouds(response.data.resArray)
+        // populateTableWithRain(response.data.resArray)
+        // populateTableWithSnow(response.data.resArray)
+        // populateTableWithWaterTemp(response.data.resArray)
+        // populateTableWithWaveDirection(response.data.resArray)
+        // populateTableWithWaves(response.data.resArray)
+        // populateTableWithWavePeriod(response.data.resArray)
+        // populateTableWithWindDirection(response.data.resArray)
+
+        populateTableWithDates(response.data.response[0].hours)
+        populateTableWithTemp(response.data.response[0].hours)
+        populateTableWithClouds(response.data.response[0].hours)
+        populateTableWithRain(response.data.response[0].hours)
+        populateTableWithSnow(response.data.response[0].hours)
+        populateTableWithWaterTemp(response.data.response[0].hours)
+        populateTableWithWaveDirection(response.data.response[0].hours)
+        populateTableWithWaves(response.data.response[0].hours)
+        populateTableWithWavePeriod(response.data.response[0].hours)
+        populateTableWithWindDirection(response.data.response[0].hours)
+
+        dataTable += `</tr></tbody></table></div></div>
+        <div class="row justify-content-end mb-5 mr-2"><a href=""><button type="button" class="btn btn-success">Agregar a mis lugares</button></a></div>`
+
         document.querySelector('#info-place').innerHTML = dataTable
     })
         .catch(err => console.log(err))
@@ -118,7 +134,7 @@ function populateTableWithWaveDirection(array) {
             if (elm.waveDirection) {
                 waveDirection = Math.round(elm.waveDirection.sg)
                 dataTable += `<td><img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Down_Arrow_Icon.png" alt="arrow" style="width: 22px; height: 17px; transform: rotate( ${waveDirection}deg ); image-rendering: -webkit-optimize-contrast; filter: invert(1) saturate(100) hue-rotate(520deg);"></td>`
-            } else { `<td> </td>` }
+            } else { dataTable += `<td> </td>` }
         }
     })
 }
@@ -156,5 +172,4 @@ function populateTableWithWindDirection(array) {
             }   // para todos los "wave" parametros solo existen datos a 7 días vista y sólo en puntos costeros
         }
     })
-    dataTable += `</tr></tbody></table></div></div>`        // final de la tabla
 }
