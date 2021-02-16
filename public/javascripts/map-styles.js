@@ -1,14 +1,27 @@
-const mapOptions = {
-    draggableCursor: 'crosshair'
-    };
+
 const mapStyles = {
-    MarMont:[
+    MarMont: [
+        {
+            "featureType": "all",
+            "elementType": "labels.text",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
         {
             "featureType": "all",
             "elementType": "labels.icon",
             "stylers": [
                 {
-                    "visibility": "off"
+                    "visibility": "simplified"
+                },
+                {
+                    "hue": "#ff0000"
+                },
+                {
+                    "saturation": "100"
                 }
             ]
         },
@@ -17,13 +30,19 @@ const mapStyles = {
             "elementType": "all",
             "stylers": [
                 {
-                    "hue": "#32ff00"
+                    "hue": "#00ff0a"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape.natural",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "hue": "#00ff0a"
                 },
                 {
-                    "saturation": "0"
-                },
-                {
-                    "visibility": "on"
+                    "saturation": "43"
                 }
             ]
         },
@@ -32,7 +51,7 @@ const mapStyles = {
             "elementType": "all",
             "stylers": [
                 {
-                    "hue": "#679714"
+                    "hue": "#a2ff00"
                 },
                 {
                     "saturation": 33.4
@@ -42,6 +61,9 @@ const mapStyles = {
                 },
                 {
                     "gamma": 1
+                },
+                {
+                    "visibility": "off"
                 }
             ]
         },
@@ -60,6 +82,21 @@ const mapStyles = {
             "stylers": [
                 {
                     "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "hue": "#00ff3c"
+                },
+                {
+                    "saturation": "12"
+                },
+                {
+                    "visibility": "on"
                 }
             ]
         },
@@ -86,16 +123,43 @@ const mapStyles = {
             "elementType": "all",
             "stylers": [
                 {
-                    "hue": "#53FF00"
+                    "hue": "#ffe600"
                 },
                 {
-                    "saturation": -73
+                    "saturation": "35"
                 },
                 {
                     "lightness": 40
                 },
                 {
                     "gamma": 1
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "visibility": "off"
+                },
+                {
+                    "hue": "#a000ff"
+                },
+                {
+                    "saturation": "53"
+                },
+                {
+                    "lightness": "-41"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
                 }
             ]
         },
@@ -200,7 +264,6 @@ const mapStyles = {
                     "visibility": "off"
                 }
             ]
-        },
-        
+        }
     ]
 }

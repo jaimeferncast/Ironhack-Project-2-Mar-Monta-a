@@ -33,6 +33,16 @@ router.get('/places', (req, res) => {
         .find()
         .then(response => res.json({ response }))
 })
+// Busqueda de lugar
+router.get('/search-place', (req, res) => {
+    axios.post(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.query.direction}&inputtype=textquery&fields=formatted_address,name,geometry&key=${process.env.MAPSKEY}`)
+        .then(response => {
+            res.send(response.data.candidates)
+
+        })
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router
 
@@ -41,3 +51,5 @@ module.exports = router
 //     PUT actualiza varios
 // "/:id" GET da uno
 //         PUT/PPATCH ACTUALIZA
+
+

@@ -5,8 +5,9 @@ function initMap() {
 
     map = new google.maps.Map(
         document.querySelector('#map'),
-        { zoom: 7, center: { lat: 40.392499, lng: -3.698214 }, styles: mapStyles.MarMont }
+        { zoom: 6, center: { lat: 40.41675, lng: -3.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
     )
+    getUserPosition(map)
 
     map.addListener('click', (mapMouseEvent) => {
 
@@ -23,14 +24,31 @@ function initMap() {
         stormGlass = { lat, lng, params }
 
         displayWeather(stormGlass)
-    })    
+    })
 }
 
 
-function myDirection(){
+function getUserPosition(map) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                console.log(position)
+                const center = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+                map.setCenter(center)
+                new google.maps.Marker({ position: center, map, icon:'images/iconStorm.png'})
+                
+
+            },
+            error => window.alert('Nose ha podido obtener tu hubicación')
+        )
+    } else {
+        window.alert('No dispones de geolocalización')
+    }
 
 }
 
 
 
-//function getMyPosition(){}
