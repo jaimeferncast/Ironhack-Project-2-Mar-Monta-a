@@ -7,8 +7,8 @@ function displayWeather(data) {
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
-    axios.get('http://localhost:3000/api/places').then(response => {
-        // axios.post('http://localhost:3000/api/places', data).then(response => {
+    axios.get('/api/places').then(response => {
+        // axios.post('/api/places', data).then(response => {
 
         // populateTableWithDates(response.data.resArray)
         // populateTableWithTemp(response.data.resArray)
