@@ -3,7 +3,7 @@ let dataTable
 function displayWeather(data) {
 
     dataTable =
-    /* Tabla con la leyenda */ `<div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Ola (m)</th></tr></tbody></table></div>
+    /* Tabla con la leyenda */ `<h6>Información de ${data.lat}, ${data.lng}</h6><div class="row flex-nowrap mb-5"><div class="d-flex justify-content-end px-0  mr-1" style="width: 12%;"><table class="table table-sm" id="weather-head"><thead><tr><th></th></tr></thead><tbody><tr><th>Temperatura (ºC)</th></tr><tr><th>Nubosidad (%)</th></tr><tr><th>Precipit. (l/m²)</th></tr><tr><th>Espesor nieve (m)</th></tr><tr><th>Temp. agua (ºC)</th></tr><tr><th>Dirección olas</th></tr><tr><th>Ola (m)</th></tr><tr><th>Período olas (s)</th></tr><tr><th>Dirección viento</th></tr></tbody></table></div>
     
     <div class="px-0" style="width: 86%; overflow-x: scroll;"><table class="table table-sm" id="weather-body" style="table-layout: fixed;"><thead><tr>` /* Inicio de la tabla de datos de Stormglass */
 
@@ -12,7 +12,13 @@ function displayWeather(data) {
         populateTableWithDates(response.data.resArray)
         populateTableWithTemp(response.data.resArray)
         populateTableWithClouds(response.data.resArray)
+        populateTableWithRain(response.data.resArray)
+        populateTableWithSnow(response.data.resArray)
+        populateTableWithWaterTemp(response.data.resArray)
+        populateTableWithWaveDirection(response.data.resArray)
         populateTableWithWaves(response.data.resArray)
+        populateTableWithWavePeriod(response.data.resArray)
+        populateTableWithWindDirection(response.data.resArray)
         document.querySelector('#info-place').innerHTML = dataTable
     })
         .catch(err => console.log(err))
@@ -69,16 +75,86 @@ function populateTableWithClouds(array) {
     })
 }
 
+function populateTableWithRain(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            if (elm.precipitation.sg >= 0.1) { precipitation = elm.precipitation.sg.toFixed(1) }
+            else { precipitation = ' ' }
+            dataTable += `<td>${precipitation}</td>`
+        }
+    })
+}
+
+function populateTableWithSnow(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let snowDepth
+            if (elm.snowDepth) {
+                if (elm.snowDepth.sg > 0) { snowDepth = elm.snowDepth.sg.toFixed(1) }
+            } else { snowDepth = ' ' }
+            dataTable += `<td>${snowDepth}</td>`
+        }
+    })
+}
+
+function populateTableWithWaterTemp(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let backgroundColor = Math.round(360 - ((elm.waterTemperature.sg) + 30 / 60 * 360))
+            const Temp = Math.round(elm.waterTemperature.sg)
+            dataTable += `<td style="background-color: hsl(${backgroundColor},100%,80%);">${Temp}</td>`
+        }
+    })
+}
+
+function populateTableWithWaveDirection(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let waveDirection
+            if (elm.waveDirection) {
+                waveDirection = Math.round(elm.waveDirection.sg)
+                dataTable += `<td><img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Down_Arrow_Icon.png" alt="arrow" style="width: 22px; height: 17px; transform: rotate( ${waveDirection}deg ); image-rendering: -webkit-optimize-contrast; filter: invert(1) saturate(100) hue-rotate(520deg);"></td>`
+            } else { `<td> </td>` }
+        }
+    })
+}
+
 function populateTableWithWaves(array) {
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             let waveHeight
-            if (elm.waveHeight) { waveHeight = elm.waveHeight.sg.toFixed(1) }     // waveHeight es especial al solo existir datos a 7 días vista y sólo en puntos costeros
-            else { waveHeight = 'n/a' }
-
+            elm.waveHeight ? waveHeight = elm.waveHeight.sg.toFixed(1) : waveHeight = ' '
             dataTable += `<td>${waveHeight}</td>`
         }
     })
-    dataTable += `</tr></tbody></table></div>`        // final de la tabla
+}
+
+function populateTableWithWavePeriod(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let wavePeriod
+            elm.wavePeriod ? wavePeriod = Math.round(elm.wavePeriod.sg) : wavePeriod = ' '
+            dataTable += `<td>${wavePeriod}</td>`
+        }
+    })
+}
+
+function populateTableWithWindDirection(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let windDirection
+            if (elm.windDirection) {
+                windDirection = Math.round(elm.windDirection.sg)
+                dataTable += `<td><img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Down_Arrow_Icon.png" alt="arrow" style="width: 22px; height: 17px; transform: rotate( ${windDirection}deg ); image-rendering: -webkit-optimize-contrast; filter: invert(1) saturate(100) hue-rotate(400deg);"></td>`
+            }   // para todos los "wave" parametros solo existen datos a 7 días vista y sólo en puntos costeros
+        }
+    })
+    dataTable += `</tr></tbody></table></div></div>`        // final de la tabla
 }
