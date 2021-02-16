@@ -7,24 +7,22 @@ const commentSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "User"
         },
-        place:  {
+        place: {
             type: Schema.Types.ObjectId,
-            ref:"Place "
-
+            ref: "Place"
         },
         text: String,
-     
     },
     {
         timestamps: true
     }
 )
-commentSchema.stacit.getUserComments = function(id) {
-    return mongoose.model('Comment').find({user: id})
+commentSchema.stacit.getUserComments = function (id) {
+    return mongoose.model('Comment').find({ user: id })
 }
 
-commentSchema.statics.getPlaceComments = function(id) {
-    return mongoose.model('Comment').find({place: id})
+commentSchema.statics.getPlaceComments = function (id) {
+    return mongoose.model('Comment').find({ place: id })
 }
 
 

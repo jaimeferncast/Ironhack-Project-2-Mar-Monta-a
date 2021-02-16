@@ -5,11 +5,12 @@ const placeSchema = new Schema(
     {
         name: String,
         description: String,
-        location: {
+        coordinates: {
             lat: String,
             lng: String
         },
         images: [String],
+        hours: Array
     },
     {
         timestamps: true
