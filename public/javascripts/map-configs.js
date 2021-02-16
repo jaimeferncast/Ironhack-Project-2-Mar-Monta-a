@@ -23,5 +23,14 @@ function initMap() {
         stormGlass = { lat, lng, params }
 
         displayWeather(stormGlass)
-    })
+    })    
 }
+
+
+function myDirection(){
+
+}
+
+
+
+//function getMyPosition(){}

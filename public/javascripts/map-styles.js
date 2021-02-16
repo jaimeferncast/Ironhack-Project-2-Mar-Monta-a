@@ -1,4 +1,6 @@
-
+const mapOptions = {
+    draggableCursor: 'crosshair'
+    };
 const mapStyles = {
     MarMont:[
         {
@@ -198,6 +200,7 @@ const mapStyles = {
                     "visibility": "off"
                 }
             ]
-        }
+        },
+        
     ]
 }

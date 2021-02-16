@@ -6,9 +6,11 @@
 
         <div class="col-12">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
+                <form action="/index" method="POST"></form>
+                <input name="direction" type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Busca</button>
+                    <button class="btn btn-outline-secondary" type="button">Busca</button> 
+
                 </div>
             </div>
             <figure id="map"></figure>
@@ -21,4 +23,5 @@
 <script src="/javascripts/map-styles.js"></script>
 <script src="/javascripts/map-configs.js"></script>
 <script src="/javascripts/weather-config.js"></script>
+<script src="https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Estation%20Atocha%20Spain&inputtype=textquery&fields=formatted_address,name,geometry&key={{googleAPI}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{googleAPI}}&callback=initMap"></script>
