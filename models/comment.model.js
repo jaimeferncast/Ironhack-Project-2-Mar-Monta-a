@@ -11,20 +11,25 @@ const commentSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "Place"
         },
-        text: String,
+        text: {
+            type: String,
+            required: true,
+            minLength: 3,
+            maxLength: 250
+        },
     },
     {
         timestamps: true
     }
 )
-commentSchema.stacit.getUserComments = function (id) {
+
+commentSchema.statics.getUserComments = function (id) {
     return mongoose.model('Comment').find({ user: id })
 }
 
 commentSchema.statics.getPlaceComments = function (id) {
     return mongoose.model('Comment').find({ place: id })
 }
-
 
 const Comment = mongoose.model('Comment', CommentSchema)
 

@@ -3,7 +3,7 @@ let dataTable // refactorizar como clase
 function displayWeather(data) {
 
     if (data.name) {
-        dataTable = `<h6 class="text-center">Datos climatológicos de ${data.name}`
+        dataTable = `<h6 class="text-center" id="place-title" name="${data.name}">Datos climatológicos de ${data.name} (10 días)`
     } else {
         dataTable = `<h6 class="text-center">Datos climatológicos en las coordenadas lat: ${data.lat}, lng: ${data.lng} (10 días)</h6>`
     }
@@ -17,10 +17,16 @@ function displayWeather(data) {
 
         populateAll(response.data.weather)
 
-        dataTable += `</tr></tbody></table></div></div>
-        <div class="row justify-content-end mb-5 mr-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button></div>`
-
+        dataTable += `</tr></tbody></table></div></div>`  /* Final de la tabla de datos de Stormglass */
         document.querySelector('#info-place').innerHTML = dataTable
+
+        let addFavouriteButton
+        if (data.name) {
+            addFavouriteButton = `<form id="add-place-form-directly" method="PUT" action="/area-personal/mis-lugares"><button type="submit" class="btn btn-primary">Agregar a mis lugares -sin modal-</button>`
+        } else {
+            addFavouriteButton = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button>`
+        }
+        document.querySelector('#add-place-button').innerHTML = addFavouriteButton
 
         addFavourite(response.data.weather, data.lat, data.lng)
     })
@@ -103,7 +109,7 @@ function populateTableWithRain(array) {
     })
 }
 
-function populateTableWithSnow(array) {
+function populateTableWithSnow(array) {     // devuelve undefined a veces - arreglar!
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
@@ -177,20 +183,37 @@ function populateTableWithWindDirection(array) {
 
 function addFavourite(weather, lat, lng) {
 
-    document.getElementById('add-place-form').addEventListener('submit', function (event) {
+    if (document.getElementById('add-place-form-directly')) {
+        document.getElementById('add-place-form-directly').addEventListener('submit', function (event) {
 
-        event.preventDefault()
+            event.preventDefault()
 
-        const name = document.querySelector('#add-place-form .form-group input[name="name"]').value
+            const name = document.querySelector('#place-title').getAttribute('name')
+            const place = {
+                name,
+                weather,
+                coordinates: { lat, lng }
+            }
 
-        const place = {
-            name,
-            weather,
-            coordinates: { lat, lng }
-        }
+            axios.put(`/api`, place)
+                .then(() => window.location.replace("/area-personal/mis-lugares"))
+                .catch(err => console.log(err))
+        })
+    } else {
+        document.getElementById('add-place-form').addEventListener('submit', function (event) {
 
-        axios.put(`/api`, place)
-            .then(res => window.location.replace("/"))
-            .catch(err => console.log(err))
-    })
+            event.preventDefault()
+
+            const name = document.querySelector('#add-place-form .form-group input[name="name"]').value
+            const place = {
+                name,
+                weather,
+                coordinates: { lat, lng }
+            }
+
+            axios.put(`/api`, place)
+                .then(() => window.location.replace("/area-personal/mis-lugares"))
+                .catch(err => console.log(err))
+        })
+    }
 }

@@ -28,6 +28,12 @@
         <div class="col-12" id="info-place">
         </div>
 
+        {{!-- Botón para agregar el lugar como favorito --}}
+        {{#if user}}
+        <div class="col-12 d-flex justify-content-end mb-5" id="add-place-button">
+        </div>
+        {{/if}}
+
         <div class="col-12">
             <form id="find-location">
                 <div class="input-group mb-3">
