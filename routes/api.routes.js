@@ -5,6 +5,7 @@ const axios = require('axios')
 const User = require("../models/user.model")
 const Place = require("../models/place.model")
 
+// Búsqueda de lugar haciendo click en el mapa
 router.post('/', (req, res) => {
     axios.get(`https://api.stormglass.io/v2/weather/point?lat=${req.body.lat}&lng=${req.body.lng}&params=${req.body.params}`, {
         headers: { 'Authorization': process.env.APIKEY }
@@ -17,9 +18,8 @@ router.post('/', (req, res) => {
         .catch(err => console.log(err))
 })
 
+// Agregar lugar a favoritos
 router.put('/', (req, res) => {
-
-    console.log(req.body)
 
     Place
         .create({
@@ -33,12 +33,17 @@ router.put('/', (req, res) => {
             favourites.push(response._id)
 
             User
-                .findByIdAndUpdate({ _id: req.user._id }, { favourites }, { new: true })
+                .findOneAndUpdate({ _id: req.user._id }, { favourites }, { new: true })
+                .then(response => {
+                    console.log('estamos aqui')
+                    res.send(response)
+                })
+            // redirect('/area-personal/mis-lugares'))
         })
         .catch(err => console.log(err))
 })
 
-// Busqueda de lugar
+// Búsqueda de lugar por input
 router.get('/:location', (req, res) => {
 
     axios.post(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.location}&inputtype=textquery&fields=formatted_address,name,geometry&key=${process.env.MAPSKEY}`)
@@ -49,11 +54,3 @@ router.get('/:location', (req, res) => {
 })
 
 module.exports = router
-
-// "/" GET all Elm
-//     POST crea
-//     PUT actualiza varios
-// "/:id" GET da uno
-//         PUT/PPATCH ACTUALIZA
-
-
