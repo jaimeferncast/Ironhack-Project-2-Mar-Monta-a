@@ -1,5 +1,6 @@
 let map
 let stormGlass
+const params = 'airTemperature,cloudCover,precipitation,snowDepth,waterTemperature,waveDirection,waveHeight,wavePeriod,windDirection,windSpeed,gust'
 
 function initMap() {
 
@@ -7,6 +8,7 @@ function initMap() {
         document.querySelector('#map'),
         { zoom: 6, center: { lat: 40.41675, lng: -3.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
     )
+
     getUserPosition(map)
 
     map.addListener('click', (mapMouseEvent) => {
@@ -19,14 +21,14 @@ function initMap() {
         const lat = split[0]
         const lng = split[1].slice(6)
 
-        const params = 'airTemperature,cloudCover,precipitation,snowDepth,waterTemperature,waveDirection,waveHeight,wavePeriod,windDirection,windSpeed,gust'
 
         stormGlass = { lat, lng, params }
 
         displayWeather(stormGlass)
     })
-}
 
+    findlocation(params)
+}
 
 function getUserPosition(map) {
     if (navigator.geolocation) {
@@ -38,17 +40,35 @@ function getUserPosition(map) {
                     lng: position.coords.longitude
                 }
                 map.setCenter(center)
-                new google.maps.Marker({ position: center, map, icon:'images/iconStorm.png'})
-                
+                new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png' })
+
 
             },
-            error => window.alert('Nose ha podido obtener tu hubicación')
+            error => window.alert('No se ha podido obtener tu hubicación')
         )
     } else {
         window.alert('No dispones de geolocalización')
     }
-
 }
 
+function findlocation(params) {
 
+    document.getElementById('find-location').addEventListener('submit', function (event) {
 
+        event.preventDefault()
+
+        const location = document.querySelector('#find-location .input-group input[name="location"]').value
+
+        axios.get(`/api/${location}`)
+            .then(response => {
+                stormGlass = {
+                    name: response.data.formatted_address,
+                    lat: response.data.geometry.location.lat,
+                    lng: response.data.geometry.location.lng,
+                    params
+                }
+                displayWeather(stormGlass)
+            })
+            .catch(err => console.log(err))
+    })
+}

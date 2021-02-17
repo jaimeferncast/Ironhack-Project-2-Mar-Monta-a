@@ -37,16 +37,16 @@ router.put('/', (req, res) => {
         })
         .catch(err => console.log(err))
 })
-// Busqueda de lugar
-router.get('/search-place', (req, res) => {
-    axios.post(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.query.direction}&inputtype=textquery&fields=formatted_address,name,geometry&key=${process.env.MAPSKEY}`)
-        .then(response => {
-            res.send(response.data.candidates)
 
+// Busqueda de lugar
+router.get('/:location', (req, res) => {
+
+    axios.post(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.location}&inputtype=textquery&fields=formatted_address,name,geometry&key=${process.env.MAPSKEY}`)
+        .then(response => {
+            res.json(response.data.candidates[0])
         })
         .catch(err => console.log(err))
 })
-
 
 module.exports = router
 
