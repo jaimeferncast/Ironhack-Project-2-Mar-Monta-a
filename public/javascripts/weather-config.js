@@ -15,16 +15,7 @@ function displayWeather(data) {
 
     axios.post('/api', data).then(response => {
 
-        populateTableWithDates(response.data.weather)
-        populateTableWithTemp(response.data.weather)
-        populateTableWithClouds(response.data.weather)
-        populateTableWithRain(response.data.weather)
-        populateTableWithSnow(response.data.weather)
-        populateTableWithWaterTemp(response.data.weather)
-        populateTableWithWaveDirection(response.data.weather)
-        populateTableWithWaves(response.data.weather)
-        populateTableWithWavePeriod(response.data.weather)
-        populateTableWithWindDirection(response.data.weather)
+        populateAll(response.data.weather)
 
         dataTable += `</tr></tbody></table></div></div>
         <div class="row justify-content-end mb-5 mr-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button></div>`
@@ -34,6 +25,20 @@ function displayWeather(data) {
         addFavourite(response.data.weather, data.lat, data.lng)
     })
         .catch(err => console.log(err))
+}
+
+function populateAll(data) {
+
+    populateTableWithDates(data)
+    populateTableWithTemp(data)
+    populateTableWithClouds(data)
+    populateTableWithRain(data)
+    populateTableWithSnow(data)
+    populateTableWithWaterTemp(data)
+    populateTableWithWaveDirection(data)
+    populateTableWithWaves(data)
+    populateTableWithWavePeriod(data)
+    populateTableWithWindDirection(data)
 }
 
 function populateTableWithDates(array) {
@@ -185,6 +190,7 @@ function addFavourite(weather, lat, lng) {
         }
 
         axios.put(`/api`, place)
+            .then(res => window.location.replace("/"))
             .catch(err => console.log(err))
     })
 }
