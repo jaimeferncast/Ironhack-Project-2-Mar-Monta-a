@@ -5,8 +5,16 @@ const passport = require("passport")
 const { checkLoggedIn } = require('./../middleware')
 
 const User = require("../models/user.model")
+const Place = require("../models/place.model")
 
-router.get('/mis-lugares', checkLoggedIn, (req, res) => res.render('users/my-places', { user: req.user }))
+router.get('/mis-lugares', checkLoggedIn, (req, res, next) => {
+
+    User
+        .findById(req.user._id)
+        .populate('favourites')
+        .then(user => res.render('users/my-places', user))
+        .catch(error => next(new Error(error)))
+})
 
 router.get('/editar', (req, res) => res.render('users/edit-profile', req))
 

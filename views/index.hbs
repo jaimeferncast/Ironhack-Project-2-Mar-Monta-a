@@ -36,11 +36,12 @@
 
         <div class="col-12">
             <form id="find-location">
-                <div class="input-group mb-3">
+                <div class="input-group">
 
                     {{!-- formulario de búsqueda de lugar --}}
-                    <input name="location" type="text" class="form-control" placeholder="Escribe el nombre de un lugar">
-                    <div class="input-group-append">
+                    <input name="location" type="text" class="form-control mb-3"
+                        placeholder="Escribe el nombre de un lugar">
+                    <div class="input-group-append mb-3">
                         <button class="btn btn-outline-secondary">Buscar</button>
                     </div>
 
@@ -56,5 +57,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/javascripts/map-styles.js"></script>
 <script src="/javascripts/map-configs.js"></script>
-<script src="/javascripts/weather-config.js"></script>
+<script src="/javascripts/weather-data.js"></script>
+<script src="/javascripts/weather-home.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{googleAPI}}&callback=initMap"></script>
