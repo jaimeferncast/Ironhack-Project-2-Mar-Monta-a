@@ -24,6 +24,9 @@ function initMap() {
 
         stormGlass = { lat, lng, params }
 
+        const latNum = +stormGlass.lat
+        const lngNum = +stormGlass.lng
+        centerMap(latNum, lngNum)
         displayWeather(stormGlass)
     })
 
@@ -34,13 +37,12 @@ function getUserPosition(map) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             position => {
-                console.log(position)
                 const center = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 }
-                map.setCenter(center)
-                new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png' })
+                centerMap(center.lat, center.lng)
+
 
 
             },
@@ -67,8 +69,20 @@ function findlocation(params) {
                     lng: response.data.geometry.location.lng,
                     params
                 }
+                const lat = +stormGlass.lat
+                const lng = +stormGlass.lng
+                centerMap(lat, lng)
                 displayWeather(stormGlass)
             })
             .catch(err => console.log(err))
     })
+}
+function centerMap(lat, lng) {
+    const center = {
+        lat: lat,
+        lng: lng
+    }
+    map.setZoom(12)
+    map.setCenter(center)
+    new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png' })
 }
