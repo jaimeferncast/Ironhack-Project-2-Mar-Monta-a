@@ -21,7 +21,6 @@ function initMap() {
         const lat = split[0]
         const lng = split[1].slice(6)
 
-
         stormGlass = { lat, lng, params }
 
         const latNum = +stormGlass.lat
@@ -42,15 +41,10 @@ function getUserPosition(map) {
                     lng: position.coords.longitude
                 }
                 centerMap(center.lat, center.lng)
-
-
-
             },
             error => window.alert('No se ha podido obtener tu hubicación')
         )
-    } else {
-        window.alert('No dispones de geolocalización')
-    }
+    } else { window.alert('No dispones de geolocalización') }
 }
 
 function findlocation(params) {
@@ -77,6 +71,7 @@ function findlocation(params) {
             .catch(err => console.log(err))
     })
 }
+
 function centerMap(lat, lng) {
     const center = {
         lat: lat,
