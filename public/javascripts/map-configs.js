@@ -1,5 +1,7 @@
 let map
 let stormGlass
+let marker
+
 const params = 'airTemperature,cloudCover,precipitation,snowDepth,waterTemperature,waveDirection,waveHeight,wavePeriod,windDirection,windSpeed,gust'
 
 function initMap() {
@@ -27,7 +29,7 @@ function initMap() {
         const latNum = +stormGlass.lat
         const lngNum = +stormGlass.lng
         centerMap(latNum, lngNum)
-        displayWeather(stormGlass)
+        displayWeather(stormGlass)     
     })
 
     findlocation(params)
@@ -78,11 +80,16 @@ function findlocation(params) {
     })
 }
 function centerMap(lat, lng) {
+   marker && marker.setMap(null)
+    
     const center = {
         lat: lat,
         lng: lng
     }
-    map.setZoom(12)
-    map.setCenter(center)
-    new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png' })
+    
+    map.setZoom(13)
+    map.setCenter(center)   
+    marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png', opacity: 0.8})
+    
 }
+
