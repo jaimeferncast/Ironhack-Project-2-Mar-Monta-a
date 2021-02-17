@@ -23,7 +23,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        {{#unless avatar}}
+        {{#unless user}}
         <li class="nav-item">
           <a class="nav-link" href="/registro">Regístrate</a>
         </li>
@@ -32,7 +32,7 @@
         </li>
         {{/unless}}
 
-        {{#if avatar}}
+        {{#if user}}
         <li class="nav-item dropdown" style="background-color: rgb(107, 138, 162);">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -46,7 +46,8 @@
         </li>
 
         <li>
-          <img style="width: 40px; height: 40px; border-radius: 50%;" src={{avatar}} alt="avatar">
+          <img style="width: 40px; height: 40px; border-radius: 50%;" src={{#with user}}{{avatar}}{{/with}}
+            alt="avatar">
         </li>
         {{/if}}
 
