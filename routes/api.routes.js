@@ -34,11 +34,7 @@ router.put('/', (req, res) => {
 
             User
                 .findOneAndUpdate({ _id: req.user._id }, { favourites }, { new: true })
-                .then(response => {
-                    console.log('estamos aqui')
-                    res.send(response)
-                })
-            // redirect('/area-personal/mis-lugares'))
+                .then((data) => res.json(data))
         })
         .catch(err => console.log(err))
 })
