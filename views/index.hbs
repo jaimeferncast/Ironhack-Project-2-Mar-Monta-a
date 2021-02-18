@@ -35,10 +35,12 @@
         </div>
 
         {{!-- Botón para agregar el lugar como favorito --}}
-        {{#if user}}
-        <div class="col-12 d-flex justify-content-end mb-5" id="add-place-button">
+        <div class="col-12 d-flex justify-content-end mb-5">
+            {{#if user}}
+            <div id="add-place-button">
+            </div>
+            {{/if}}
         </div>
-        {{/if}}
 
         <div class="col-12">
             <form id="find-location">

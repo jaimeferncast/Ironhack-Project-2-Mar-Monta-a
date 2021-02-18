@@ -8,7 +8,7 @@ function initMap() {
 
     map = new google.maps.Map(
         document.querySelector('#map'),
-        { zoom: 5, center: { lat: 40.41675, lng: 15.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
+        { zoom: 5, center: { lat: 40.41675, lng: 15.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont, mapTypeId: 'terrain' }
     )
 
 
