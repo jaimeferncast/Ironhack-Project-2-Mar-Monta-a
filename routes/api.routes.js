@@ -38,7 +38,7 @@ router.put('/', (req, res, next) => {
         .catch(error => next(new Error(error)))
 })
 
-// Búsqueda de places por nombre
+// Búsqueda de places por nombre desde weather-user.js para sacar su info en mis-lugares
 router.post('/user-places', (req, res, next) => {
 
     let promiseArr = req.body.placeName.map(elm => {

@@ -11,7 +11,9 @@ function initMap() {
         { zoom: 5, center: { lat: 40.41675, lng: 15.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
     )
 
+
     getUserPosition()
+
 
     map.addListener('click', (mapMouseEvent) => {
 
@@ -35,8 +37,13 @@ function initMap() {
 }
 
 function getUserPosition() {
+    console.log("antes del if", navigator.geolocation.getCurrentPosition(cosa => cosa))
+
     if (navigator.geolocation) {
+        console.log(navigator.geolocation.getCurrentPosition)
+
         navigator.geolocation.getCurrentPosition(position => {
+            console.log(position)
             const center = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -45,6 +52,7 @@ function getUserPosition() {
         },
             error => window.alert('No se ha podido obtener tu hubicación')
         )
+
     } else { window.alert('No dispones de geolocalización') }
 }
 
@@ -79,7 +87,7 @@ function centerMap(lat, lng) {
 
     const center = { lat, lng }
 
-    map.setZoom(12)
+    map.setZoom(13)
     map.setCenter(center)
     marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png', opacity: 0.8 })
 }

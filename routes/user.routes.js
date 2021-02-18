@@ -12,7 +12,7 @@ router.get('/mis-lugares', checkLoggedIn, (req, res, next) => {
     User
         .findById(req.user._id)
         .populate('favourites')
-        .then(user => res.render('users/my-places', user))
+        .then(user => res.render('users/my-places', { user }))
         .catch(error => next(new Error(error)))
 })
 
