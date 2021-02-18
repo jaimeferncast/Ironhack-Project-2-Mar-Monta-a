@@ -43,7 +43,7 @@ function getUserPosition() {
             }
             centerMap(center.lat, center.lng)
         },
-            error => window.alert(error, 'No se ha podido obtener tu hubicación')
+            error => window.alert('No se ha podido obtener tu hubicación')
         )
     } else { window.alert('No dispones de geolocalización') }
 }

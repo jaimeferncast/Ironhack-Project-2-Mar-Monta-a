@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif; }
+  font-family: 'Poppins', sans-serif; }
 
 #map {
   width: 100%;
@@ -51,5 +51,8 @@ td {
 .weather-body td {
   padding-inline: 0;
   height: 28px; }
+
+.btn-info {
+  background-color: #228686; }
 
 /*# sourceMappingURL=style.css.map */
