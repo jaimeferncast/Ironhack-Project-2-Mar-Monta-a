@@ -12,6 +12,8 @@ function populateAll(data) {
     populateTableWithWaves(data)
     populateTableWithWavePeriod(data)
     populateTableWithWindDirection(data)
+    populateTableWithWindSpeed(data)
+    populateTableWithWindGusts(data)
 }
 
 function populateTableWithDates(array) {
@@ -144,6 +146,26 @@ function populateTableWithWindDirection(array) {
                 windDirection = Math.round(elm.windDirection.sg)
                 dataTable += `<td><img src="https://upload.wikimedia.org/wikipedia/en/f/f1/Down_Arrow_Icon.png" alt="arrow" style="width: 22px; height: 17px; transform: rotate( ${windDirection}deg ); image-rendering: -webkit-optimize-contrast; filter: invert(1) saturate(100) hue-rotate(400deg);"></td>`
             }   // para todos los "wave" parametros solo existen datos a 7 días vista y sólo en puntos costeros
+        }
+    })
+}
+
+function populateTableWithWindSpeed(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let windGusts = Math.round(elm.gust.sg * 3.6)
+            dataTable += `<td>${windGusts}</td>`
+        }
+    })
+}
+
+function populateTableWithWindGusts(array) {
+    dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
+    array.forEach((elm, i) => {
+        if (!(i % 3)) {
+            let windSpeed = Math.round(elm.windSpeed.sg * 3.6)
+            dataTable += `<td>${windSpeed}</td>`
         }
     })
 }

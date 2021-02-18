@@ -8,7 +8,7 @@
             <h5>{{name}}</h5>
             <div class="row flex-nowrap mb-3">
                 <div class="d-flex justify-content-end" style="width: 12%;">
-                    <table class="table table-sm" id="weather-head">
+                    <table class="table table-sm weather-head">
                         <thead>
                             <tr>
                                 <th class="text-center pb-3">
@@ -46,22 +46,18 @@
                             <tr>
                                 <th>Dirección viento</th>
                             </tr>
+                            <tr>
+                                <th>Vel. viento (km/h)</th>
+                            </tr>
+                            <tr>
+                                <th>Ráfagas (km/h)</th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="px-0" style="width: 86%; overflow-x: scroll;">
-                    <table class="table table-sm" id="weather-body" style="table-layout: fixed;">
-                        <thead>
-                            <tr>
-                                <th style="background-color: rgb(243, 243, 243);">M<br>16<br>0h</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="background-color: hsl(267,100%,60%);">-2</td>
-
-                                {{!-- {{> weatherCard }} --}}
+                <div class="px-0 user-place-weather" style="width: 86%; overflow-x: scroll;" id="{{name}}">
+                    {{!-- {{> weatherCard }} --}}
                 </div>
             </div>
             {{/each}}

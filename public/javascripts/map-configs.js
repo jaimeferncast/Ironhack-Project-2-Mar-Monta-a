@@ -8,10 +8,10 @@ function initMap() {
 
     map = new google.maps.Map(
         document.querySelector('#map'),
-        { zoom: 6, center: { lat: 40.41675, lng: -3.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
+        { zoom: 5, center: { lat: 40.41675, lng: 15.70350 }, draggableCursor: 'crosshair', styles: mapStyles.MarMont }
     )
 
-    getUserPosition(map)
+    getUserPosition()
 
     map.addListener('click', (mapMouseEvent) => {
 
@@ -28,23 +28,22 @@ function initMap() {
         const latNum = +stormGlass.lat
         const lngNum = +stormGlass.lng
         centerMap(latNum, lngNum)
-        displayWeather(stormGlass)     
+        displayWeather(stormGlass)
     })
 
     findlocation(params)
 }
 
-function getUserPosition(map) {
+function getUserPosition() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                const center = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }
-                centerMap(center.lat, center.lng)
-            },
-            error => window.alert('No se ha podido obtener tu hubicación')
+        navigator.geolocation.getCurrentPosition(position => {
+            const center = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            centerMap(center.lat, center.lng)
+        },
+            error => window.alert(error, 'No se ha podido obtener tu hubicación')
         )
     } else { window.alert('No dispones de geolocalización') }
 }
@@ -75,15 +74,12 @@ function findlocation(params) {
 }
 
 function centerMap(lat, lng) {
-   marker && marker.setMap(null)
-    
-    const center = {
-        lat, lng
-    }
-    
-    map.setZoom(13)
-    map.setCenter(center)   
-    marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png', opacity: 0.8})
-    
-}
 
+    marker && marker.setMap(null)
+
+    const center = { lat, lng }
+
+    map.setZoom(12)
+    map.setCenter(center)
+    marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png', opacity: 0.8 })
+}

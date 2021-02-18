@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const placeSchema = new Schema(
     {
-        name: String,
+        name: { type: String, unique: true },
         coordinates: {
             lat: String,
             lng: String
