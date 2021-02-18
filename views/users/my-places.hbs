@@ -11,22 +11,21 @@
                 <span>
                     <h5 class="my-1 ml-2">{{name}}</h5>
                 </span>
-                <div class="col-6 d-flex justify-content-end pr-1">
-                    {{!-- <button class="btn btn-primary btn-sm ml-2" type="button" data-toggle="collapse"
-                        data-target="#{{id}}" style="width: 180px;" aria-expanded="false"
-                        aria-controls="collapseExample">
+                <div class="col-8 d-flex justify-content-end pr-1">
+                    <button class="btn btn-info btn-sm ml-2" type="button" data-toggle="collapse" data-target="#x{{id}}"
+                        style="width: 190px;" aria-expanded="false" aria-controls="collapseExample">
                         Mostrar datos
-                    </button> --}}
-                    <button class="btn btn-primary btn-sm ml-2" type="button" style="width: 180px;">
+                    </button>
+                    <button class="btn btn-info btn-sm ml-2" type="button" style="width: 190px;">
                         Ir a la página del lugar
                     </button>
-                    <button class="btn btn-primary btn-sm ml-2" type="button" style="width: 180px;">
+                    <button class="btn btn-info btn-sm ml-2" type="button" style="width: 190px;">
                         Eliminar de mis lugares
                     </button>
                 </div>
             </div>
 
-            {{!-- <div class="collapse" id="{{id}}"> --}}
+            <div class="collapse" id="x{{id}}">
                 <div class="row flex-nowrap mb-3">
                     <div class="d-flex justify-content-end" style="width: 12%;">
                         <table class="table table-sm weather-head">
@@ -80,8 +79,7 @@
                     <div class="px-0 user-place-weather" style="width: 86%; overflow-x: scroll;" id="{{name}}">
                     </div>
                 </div>
-                {{!--
-            </div> --}}
+            </div>
             {{/each}}
         </div>
         {{/with}}
