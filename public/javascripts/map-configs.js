@@ -78,8 +78,7 @@ function centerMap(lat, lng) {
    marker && marker.setMap(null)
     
     const center = {
-        lat: lat,
-        lng: lng
+        lat, lng
     }
     
     map.setZoom(13)
