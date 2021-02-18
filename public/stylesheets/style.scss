@@ -1,5 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: #dfecec;
 }
 
 #map{
@@ -15,7 +16,7 @@ h5 {
 th,
 td {
   padding: 2px;
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: 100;
 }
 
@@ -27,10 +28,10 @@ td {
 }
 
 .weather-head thead th {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: 100;
   height: 66px;
-  background-color: white;
+  background-color: #dfecec;
   border-bottom: 0;
 }
 
@@ -41,7 +42,7 @@ td {
 .weather-head th,
 .weather-body th,
 .weather-body td {
-  border: 1px solid white;
+  border: 1px solid #dfecec;
 }
 
 .weather-body {
@@ -52,10 +53,10 @@ td {
 
 .weather-body thead th {
   padding: 3px;
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: 100;
   height: 66px;
-  border-color: white;
+  border-color: #dfecec;
 }
 
 .weather-body td {
@@ -64,4 +65,8 @@ td {
 }
 .btn-info {
   background-color: #228686;
+}
+
+.card-body{
+  background-color: #dfecec;
 }
