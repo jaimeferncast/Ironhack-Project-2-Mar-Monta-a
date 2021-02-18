@@ -89,5 +89,5 @@ function centerMap(lat, lng) {
 
     map.setZoom(13)
     map.setCenter(center)
-    marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png', opacity: 0.8 })
+    marker = new google.maps.Marker({ position: center, map, icon: 'images/iconStorm.png' })
 }

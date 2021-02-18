@@ -1,6 +1,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #dfecec;
+  font-weight: 100;
 }
 
 #map{
@@ -69,4 +70,25 @@ td {
 
 .card-body{
   background-color: #dfecec;
+}
+
+.error-message {
+  background-color: #ae0ed6b3;
+  position: fixed;
+  left: 37%;
+  width: 25%;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 5px;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
+ 
+.share{
+  background-color: #228686;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.pshare{
+  margin: 0px;
 }
