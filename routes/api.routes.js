@@ -38,6 +38,22 @@ router.put('/', (req, res, next) => {
         .catch(error => next(new Error(error)))
 })
 
+// Búsqueda de places por nombre
+router.post('/user-places', (req, res, next) => {
+
+    let promiseArr = req.body.placeName.map(elm => {
+
+        return Place
+            .findOne({ name: elm })
+            .select('weather name')
+            .then(place => { return place })
+    })
+
+    Promise.all(promiseArr)
+        .then(places => res.json({ places }))
+        .catch(error => next(new Error(error)))
+})
+
 // Búsqueda de lugar por input
 router.get('/:location', (req, res, next) => {
 
@@ -47,7 +63,5 @@ router.get('/:location', (req, res, next) => {
         })
         .catch(error => next(new Error(error)))
 })
-
-
 
 module.exports = router
