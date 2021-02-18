@@ -17,8 +17,8 @@ function displayWeather(data) {
         document.querySelector('#info-place').innerHTML = dataTable
 
         let addFavouriteButton = data.name ?    /* Botón para agregar el lugar a "mis lugares" */
-            `<form id="add-place-form-directly" method="PUT" action="/area-personal/mis-lugares"><button type="submit" class="btn btn-primary">Agregar a mis lugares</button>`
-            : `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button>`
+            `<form id="add-place-form-directly" method="PUT" action="/area-personal/mis-lugares"><button type="submit" class="btn btn-info">Agregar a mis lugares</button>`
+            : `<button type="button" class="btn btn-info" data-toggle="modal" data-target="#newPlaceForm">Agregar a mis lugares</button>`
         document.querySelector('#add-place-button').innerHTML = addFavouriteButton
 
         addFavourite(response.data.weather, data.lat, data.lng)
