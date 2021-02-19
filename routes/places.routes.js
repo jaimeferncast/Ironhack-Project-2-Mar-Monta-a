@@ -6,6 +6,11 @@ const { checkLoggedIn } = require('./../middleware')
 const Place = require("../models/place.model")
 const Comment = require("../models/comment.model")
 
+// List of places added by the users
+router.get('/', checkLoggedIn, (req, res, next) => {
+    Place.find().then(places => res.render('places/all-places', { places, user: req.user })).catch(error => next(new Error(error)))
+})
+
 // Place page
 router.get('/:name', checkLoggedIn, (req, res, next) => {
 
