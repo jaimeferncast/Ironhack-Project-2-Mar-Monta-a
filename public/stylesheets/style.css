@@ -88,6 +88,7 @@ footer a {
   filter: saturate(0.5); }
 
 footer a.contact {
-  color: #530e7a; }
+  line-height: 32px;
+  color: #ff7dc8; }
 
 /*# sourceMappingURL=style.css.map */

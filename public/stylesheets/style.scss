@@ -90,21 +90,19 @@ td {
   margin-top: 1px;
 }
 
-
 footer {
   width: 100%;
   height: 45px; 
   position: relative;
   left:0px;
   bottom:-45px;
- 
- 
 }
 
 footer a{
   filter: saturate(0.5)
 }
+
 footer a.contact{
-  color: #530e7a;
-  
+  line-height: 32px;
+  color: #ff7dc8;
 }
