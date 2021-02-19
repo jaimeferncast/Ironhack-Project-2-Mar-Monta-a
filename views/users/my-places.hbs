@@ -9,10 +9,10 @@
             {{#each favourites}}
 
             <div class="row card card-body flex-row justify-content-between p-2 mt-4 mb-3 mx-1">
-                <span>
-                    <h5 class="my-1 ml-2">{{name}}</h5>
+                <span style="max-width: 41%;">
+                    <h5 class="my-1 ml-2" style="white-space: nowrap; overflow: hidden;">{{name}}</h5>
                 </span>
-                <div class="col-8 d-flex justify-content-end pr-1">
+                <div class="col-7 d-flex justify-content-end pr-1">
                     <button class="btn btn-info btn-sm ml-2" type="button" data-toggle="collapse" data-target="#x{{id}}"
                         style="width: 190px;" aria-expanded="false" aria-controls="collapseExample">
                         Mostrar datos

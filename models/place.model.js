@@ -8,6 +8,10 @@ const placeSchema = new Schema(
             lat: String,
             lng: String
         },
+        comments: [{
+            type: Schema.Types.ObjectId,
+            ref: "Comment"
+        }],
         images: [String],
         weather: Array
     },

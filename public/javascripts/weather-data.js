@@ -59,10 +59,10 @@ function populateTableWithClouds(array) {
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
-            const backgroundColor = Math.round(255 - (elm.cloudCover.sg / 100 * 130))     // Queremos un gris entre rgb(90,90,90) -100% de nubes- y rgb (255, 255, 255) -0% de nubes-
-            if (elm.cloudCover.sg > 1) { cloudCover = Math.round(elm.cloudCover.sg) }     // cloudCover en blanco si es igual a 0
+            const alpha = elm.cloudCover.sg / 100
+            if (elm.cloudCover.sg > 1) { cloudCover = Math.round(elm.cloudCover.sg) }
             else { cloudCover = '' }
-            dataTable += `<td style="background-color: rgb(${backgroundColor}, ${backgroundColor}, ${backgroundColor});">${cloudCover}</td>`
+            dataTable += `<td style="background-color: rgba(90,90,90,${alpha});">${cloudCover}</td>`
         }
     })
 }
@@ -78,13 +78,13 @@ function populateTableWithRain(array) {
     })
 }
 
-function populateTableWithSnow(array) {     // devuelve undefined a veces - arreglar!
+function populateTableWithSnow(array) {
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             let snowDepth
             if (elm.snowDepth) {
-                if (elm.snowDepth.sg > 0) { snowDepth = elm.snowDepth.sg.toFixed(1) }
+                (elm.snowDepth.sg > 0) ? snowDepth = elm.snowDepth.sg.toFixed(1) : snowDepth = ' '
             } else { snowDepth = ' ' }
             dataTable += `<td>${snowDepth}</td>`
         }
@@ -120,8 +120,12 @@ function populateTableWithWaves(array) {
     array.forEach((elm, i) => {
         if (!(i % 3)) {
             let waveHeight
-            elm.waveHeight ? waveHeight = elm.waveHeight.sg.toFixed(1) : waveHeight = ' '
-            dataTable += `<td>${waveHeight}</td>`
+            let alpha
+            if (elm.waveHeight) {
+                alpha = elm.waveHeight.sg / 10
+                waveHeight = elm.waveHeight.sg.toFixed(1)
+            } else { waveHeight = ' ' }
+            dataTable += `<td style="background-color: rgba(41,41,255,${alpha});">${waveHeight}</td>`
         }
     })
 }
@@ -154,8 +158,9 @@ function populateTableWithWindSpeed(array) {
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
-            let windGusts = Math.round(elm.gust.sg * 3.6)
-            dataTable += `<td>${windGusts}</td>`
+            const alpha = elm.windSpeed.sg * 3.6 / 100 + 0.1
+            let windSpeed = Math.round(elm.windSpeed.sg * 3.6)
+            dataTable += `<td style="background-color: rgba(167,26,255,${alpha});">${windSpeed}</td>`
         }
     })
 }
@@ -164,8 +169,9 @@ function populateTableWithWindGusts(array) {
     dataTable += `</tr><tr>`     // elementos de la tabla entre rows de datos
     array.forEach((elm, i) => {
         if (!(i % 3)) {
-            let windSpeed = Math.round(elm.windSpeed.sg * 3.6)
-            dataTable += `<td>${windSpeed}</td>`
+            const alpha = elm.gust.sg * 3.6 / 100 + 0.1
+            let gust = Math.round(elm.gust.sg * 3.6)
+            dataTable += `<td style="background-color: rgba(204,0,184,${alpha});">${gust}</td>`
         }
     })
 }
