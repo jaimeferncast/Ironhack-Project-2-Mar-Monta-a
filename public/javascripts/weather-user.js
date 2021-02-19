@@ -13,7 +13,6 @@ axios.post('/api/user-places', { placeName })
             dataTable += '</tr></tbody></table>'
             document.getElementById(elm.name).innerHTML = dataTable
             dataTable = ''
-            console.log(typeof elm._id)
         })
     })
     .catch(err => console.log(err))

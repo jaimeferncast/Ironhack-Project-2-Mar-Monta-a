@@ -1,15 +1,20 @@
 const express = require('express')
 const router = express.Router()
+
 const axios = require('axios')
+
+const MapsApi = require('./../service/maps.service')
+const mapsService = new MapsApi()
+const StormglassApi = require('./../service/stormglass.service')
+const stormglassService = new StormglassApi()
 
 const User = require("../models/user.model")
 const Place = require("../models/place.model")
 
 // Search place by clicking in the map
 router.post('/', (req, res, next) => {
-    axios.get(`https://api.stormglass.io/v2/weather/point?lat=${req.body.lat}&lng=${req.body.lng}&params=${req.body.params}`, {
-        headers: { 'Authorization': process.env.APIKEY }
-    })
+
+    stormglassService.getWeather(req.body)
         .then(response => {
 
             let weather = response.data.hours
@@ -59,10 +64,9 @@ router.post('/user-places', (req, res, next) => {
 // Search place by name with the search input
 router.get('/:location', (req, res, next) => {
 
-    axios.post(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.location}&inputtype=textquery&fields=formatted_address,name,geometry&key=${process.env.MAPSKEY}`)
-        .then(response => {
-            res.json(response.data.candidates[0])
-        })
+    mapsService
+        .searchPlace(req.params.location)
+        .then(response => res.json(response.data.candidates[0]))
         .catch(error => next(new Error(error)))
 })
 

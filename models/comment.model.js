@@ -31,6 +31,6 @@ commentSchema.statics.getPlaceComments = function (id) {
     return mongoose.model('Comment').find({ place: id })
 }
 
-const Comment = mongoose.model('Comment', CommentSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
 module.exports = Comment
