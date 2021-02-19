@@ -4,6 +4,6 @@ module.exports = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: 'supermarmont@gmail.com',
-        pass: 'marmont'
+        pass: 'marmont7!'
     }
 })

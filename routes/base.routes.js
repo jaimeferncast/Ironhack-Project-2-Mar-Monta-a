@@ -13,8 +13,8 @@ router.post('/contacto', (req, res, next) => {
     const { email, name, message } = req.body
 
     const options = {
-        from: 'Contacto web <supermarmont@gmail.com>',
-        to: '<supermarmont@gmail.com>',             
+        from: 'Contacto web <hola@marmont.com>',
+        to: email,             
         subject: 'Nuevo contacto de ' + name + ' desde la página web 💷',
         text: message,
         html: `<b>${message}</b>`

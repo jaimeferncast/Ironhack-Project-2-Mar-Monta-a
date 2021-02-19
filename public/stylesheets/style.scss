@@ -3,7 +3,9 @@ body {
   background-color: #dfecec;
   font-weight: 100;
 }
-
+main {
+  min-height: 100vh;
+}
 #map{
   width: 100%;
   height: 600px;
@@ -12,6 +14,10 @@ body {
 h5 {
   font-size: 1.1rem;
   margin-bottom: 1rem;
+}
+
+img.logo{
+  width: 80%;
 }
 
 th,
@@ -58,7 +64,6 @@ td {
   font-weight: 100;
   height: 66px;
   border-color: #dfecec;
-  line-height: 1.7;
 }
 
 .weather-body td {
@@ -82,14 +87,24 @@ td {
   padding: 5px 0;
   border-radius: 5px;
   font-size: 1.1em;
-  margin-top: 10px;
+  margin-top: 1px;
 }
+
+
+footer {
+  width: 100%;
+  height: 45px; 
+  position: relative;
+  left:0px;
+  bottom:-45px;
  
-.share{
-  background-color: #228686;
-  padding: 5px;
-  margin-bottom: 5px;
+ 
 }
-.pshare{
-  margin: 0px;
+
+footer a{
+  filter: saturate(0.5)
+}
+footer a.contact{
+  color: #530e7a;
+  
 }
