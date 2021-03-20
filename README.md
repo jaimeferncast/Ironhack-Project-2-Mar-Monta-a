@@ -11,8 +11,6 @@ App can be accessed in the link below👇
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [MarMont](https://marmontapp.herokuapp.com/)
 
-<br/>
-
 ## Endpoints Table
 
 |Id|Method|Path|Description|
@@ -37,10 +35,6 @@ App can be accessed in the link below👇
 |18|Post|'/api/user-places'|Display detailed weather from the selected place from users' favourites list.|
 |19|Get|'/api/:location'|Same as endpoint #16 but place is searched by input.|
 |20|Get|'/cerrar-sesion'|Session logout and redirect to the index page.|
-
-<br/>
-<hr>
-<br/>
 
 ## Authors
 
