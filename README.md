@@ -36,6 +36,8 @@ App can be accessed in the link below👇
 |19|Get|'/api/:location'|Same as endpoint #16 but place is searched by input.|
 |20|Get|'/cerrar-sesion'|Session logout and redirect to the index page.|
 
+<br/>
+
 ## Authors
 
 <br/>
