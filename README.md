@@ -5,7 +5,7 @@
 
 > App dedicated to adventurers and athletes, where anyone can fetch detailed weather (including wave and snow conditions) for any coordinates in the globe, save as favourite, browse other users' favourite spots and leave comments about their experiences.
 
-Built using <code>Express.js</code> and <code>Node.js</code>, the app connects with <code>Stormglass</code> and <code>Google Maps</code> APIs though <code>Axios</code>. User, places and comments DBs stored in <code>MongoDB Atlas</code> and templating made with <code>Handlebars</code>.
+Built using <code>Express.js</code> and <code>Node.js</code>, the app connects with <code>Stormglass</code> and <code>Google Maps</code> APIs though <code>Axios</code>. User, places and comments collections stored in <code>MongoDB Atlas</code> and templating made with <code>Handlebars</code>.
 
 App can be accessed in the link below👇
 
