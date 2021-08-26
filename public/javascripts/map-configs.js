@@ -37,13 +37,8 @@ function initMap() {
 }
 
 function getUserPosition() {
-    console.log("antes del if", navigator.geolocation.getCurrentPosition(cosa => cosa))
-
     if (navigator.geolocation) {
-        console.log(navigator.geolocation.getCurrentPosition)
-
         navigator.geolocation.getCurrentPosition(position => {
-            console.log(position)
             const center = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -63,6 +58,8 @@ function findlocation(params) {
         event.preventDefault()
 
         const location = document.querySelector('#find-location .input-group input[name="location"]').value
+
+        console.log(location)
 
         axios.get(`/api/${location}`)
             .then(response => {

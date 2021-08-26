@@ -66,7 +66,9 @@ router.get('/:location', (req, res, next) => {
 
     mapsService
         .searchPlace(req.params.location)
-        .then(response => res.json(response.data.candidates[0]))
+        .then(response => {
+            res.json(response.data.candidates[0])
+        })
         .catch(error => next(new Error(error)))
 })
 
