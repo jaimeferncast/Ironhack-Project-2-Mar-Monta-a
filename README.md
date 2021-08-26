@@ -42,12 +42,12 @@ App can be accessed in the link below👇
 
 <br/>
 
-👤 **Alejandro Caballero**
-
-* Github: [@Atreyu777](https://github.com/Atreyu777)
-* LinkedIn: [@alejandro-caballero](https://linkedin.com/in/alejandro-caballero-15946a1ba)
-
 👤 **Jaime Fernández-Castaño**
 
 * Github: [@jaimeferncast](https://github.com/jaimeferncast)
 * LinkedIn: [@jaimeferncast](https://linkedin.com/in/jaimeferncast)
+
+👤 **Alejandro Caballero**
+
+* Github: [@Atreyu777](https://github.com/Atreyu777)
+* LinkedIn: [@alejandro-caballero](https://linkedin.com/in/alejandro-caballero-15946a1ba)
